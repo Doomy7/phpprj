@@ -19,7 +19,7 @@
    <main>
        <div class="container">
            <a href="#">Menuitem1</a>
-           <a href="marks.php">My Marks</a>
+           <a href="marks.php?id=<?php echo $_GET['id'];?>">My Marks</a>
            <a href="logout.php">Log Out</a>
            <a href="#">Menuitem4</a>
        </div>

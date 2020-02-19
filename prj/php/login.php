@@ -13,7 +13,12 @@
 
   function connect($type, $ID, $psw, $conn){
     $stmt = mysqli_stmt_init($conn);
-    $sqlq = "SELECT `username`, `password` FROM `$type` WHERE `username` = ? OR `email` = ?;";
+    if($type=="students"){
+      $sqlq = "SELECT `username`, `password`, `sid` FROM `$type` WHERE `username` = ? OR `email` = ?;";
+    }else if($type=="teachers"){
+      $sqlq = "SELECT `username`, `password`, `tid` FROM `$type` WHERE `username` = ? OR `email` = ?;";
+    }
+
     if(!mysqli_stmt_prepare($stmt, $sqlq)){
       echo 'SQL ERROR';
     }else{
@@ -28,8 +33,14 @@
         if(password_verify($psw, $row['password'])){
           $_SESSION['log_flag'] = $type;
           $_SESSION['name'] = $row['username'];
-          header("Location: ../main.php?login=".$type);
-          exit();
+          if($type=="students"){
+            header("Location: ../main.php?login=".$type."&id=".$row['sid']);
+            exit();
+          }else if ($type="teachers"){
+            header("Location: ../main.php?login=".$type."&id=".$row['tid']);
+            exit();
+          }
+
         }else{
           header("Location: ../login.php?error=05");
           exit();

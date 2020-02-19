@@ -1,6 +1,17 @@
 <?php
-  session_unset();
-  session_start();
+  if(isset($_SESSION['log_flag'])){
+    if($_SESSION['log_flag'] == "students"){
+      header("Location: php/smain.php");
+    }else if ($_SESSION['log_flag'] == "teachers"){
+      header("Location: php/tmain.php");
+    }else{
+        session_unset();
+        session_start();
+    }
+  }else{
+      session_unset();
+      session_start();
+  }
  ?>
 <!DOCTYPE html>
 <html lang="en">
