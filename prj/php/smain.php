@@ -1,9 +1,10 @@
 <?php
   session_start();
+  print_r($_SESSION);
   if($_SESSION["log_flag"] == "teachers"){
     header("Location: null.php");
   }else if ($_SESSION["log_flag"] != "students"){
-    header("Location: ../login.php");
+    header("Location: ../main.php");
   }
 
  ?>
@@ -18,13 +19,27 @@
 <body>
    <main>
        <div class="container">
-           <a href="#">Menuitem1</a>
-           <a href="marks.php?id=<?php echo $_GET['id'];?>">My Marks</a>
-           <a href="logout.php">Log Out</a>
-           <a href="#">Menuitem4</a>
+           <form class="" action="marks.php" id="marks">
+             <a href="javascript:void(0);" onclick="marks();">My Marks</a>
+           </form>
+           <form class="" action="logout.php" id="logout">
+             <a href="javascript:void(0);" onclick="logout();">LogOut</a>
+           </form>
        </div>
 
        <p class="error">ERROR</p>
    </main>
 </body>
 </html>
+
+<script>
+function logout() {
+  document.getElementById('logout').submit();
+  return true;
+}
+
+function marks() {
+  document.getElementById('marks').submit();
+  return true;
+}
+</script>

@@ -31,7 +31,7 @@
 
         <div class="form">
             <h2>Log In!</h2>
-            <form class="" action="php/login.php" method="post">
+            <form class="" action="verify.php" method="post">
             <input type="text" name="id" placeholder="username/email">
             <input type="password" name="password" placeholder="password">
             <select id="type" name="type">
@@ -43,7 +43,7 @@
             <?php
               if(isset($_GET['error'])){
                 $error = $_GET['error'];
-                $file = fopen("php/includes/errors.txt","r");
+                $file = fopen("../includes/errors.txt","r");
                 while($row = fgets($file)) {
                   list( $erNo, $type ) = explode( ",", $row );
                   if($erNo == $error){?>

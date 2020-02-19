@@ -10,7 +10,7 @@
     <div class="container">
         <div class="form">
             <h2>Sign up!</h2>
-            <form class="" action="php/register/register.php" method="post">
+            <form class="" action="register.php" method="post">
               <input type="text" name="name" placeholder="name">
               <input type="text" name="surname" placeholder="surname">
               <input type="text" name="username" placeholder="username">
@@ -26,7 +26,7 @@
               <?php
                 if(isset($_GET['error'])){
                   $error = $_GET['error'];
-                  $file = fopen("php/includes/errors.txt","r");
+                  $file = fopen("../includes/errors.txt","r");
                   while($row = fgets($file)) {
                     list( $erNo, $type ) = explode( ",", $row );
                     if($erNo == $error){?>

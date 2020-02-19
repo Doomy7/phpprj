@@ -1,4 +1,4 @@
 <?php
   $_SESSION["log_flag"] = "login";
-  header("Location: ../login.php");
+  header("Location: ../main.php");
  ?>

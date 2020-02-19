@@ -1,6 +1,6 @@
 <?php
 
-  include_once "includes/dbinc.php";
+  include_once "../includes/dbinc.php";
 
   if(isset($_POST['submit'])){
 
@@ -13,51 +13,53 @@
     $id = mysqli_real_escape_string($conn, $_POST['type']);
 
     if(empty($name) || empty($surn) || empty($un) || empty($email) || empty($pass1) || empty($pass2) || $id == "none"){
-      header("Location: ../../signup.php?error=00");
+      header("Location: signup.php?error=00");
       exit();
     }else if ($pass1 !== $pass2){
-      header("Location: ../signup.php?error=01");
+      header("Location: signup.php?error=01");
       exit();
     }else if(!preg_match("/^[a-zA-Z0-9]*$/", $un)){
-      header("Location: ../signup.php?error=02");
+      header("Location: signup.php?error=02");
       exit();
     }else if(!filter_var($email, FILTER_VALIDATE_EMAIL)){
-      header("Location: ../signup.php?error=03");
+      header("Location: signup.php?error=03");
       exit();
     }else{
       check_email("students", $id, $conn);
       check_email("teachers", $id, $conn);
       check_username("students", $id, $conn);
       check_username("teachers", $id, $conn);
+      exit();
     }
     insert($name, $surn, $email, $pass1, $un, $id, $conn);
   }
 
   function check_email($type, $id, $conn){
-    $stmt = mysqli_stmt_init($conn);
     $sqlq = "SELECT * FROM `$type` WHERE `email` = ?";
-    if(!mysqli_stmt_prepare($stmt1, $sqlq1)){
+    $stmt = mysqli_stmt_init($conn);
+    if(!mysqli_stmt_prepare($stmt, $sqlq)){
       echo 'SQL ERROR';
     }else{
       mysqli_stmt_bind_param($stmt, "s", $email);
       mysqli_stmt_execute($stmt);
       mysqli_stmt_store_result($stmt);
       $result_check = mysqli_stmt_num_rows($stmt);
+      echo($result_check);
       if($result_check>0){
         if($type == "student"){
           if($type != $id){
-            header("Location: ../signup.php?error=3");
+            header("Location: signup.php?error=3");
             exit();
           }else{
-            header("Location: ../signup.php?error=1");
+            header("Location: signup.php?error=1");
             exit();
           }
         }else if($type == "teacher"){
           if($type != $id){
-            header("Location: ../signup.php?error=4");
+            header("Location: signup.php?error=4");
             exit();
           }else{
-            header("Location: ../signup.php?error=2");
+            header("Location: signup.php?error=2");
             exit();
           }
         }
@@ -69,28 +71,28 @@
     //userName check
     $sqlq = "SELECT * FROM `$type` WHERE `username` = ?";
     $stmt = mysqli_stmt_init($conn);
-    if(!mysqli_stmt_prepare($stmt2, $sqlq2)){
+    if(!mysqli_stmt_prepare($stmt, $sqlq)){
       echo 'SQL ERROR';
     }else{
-      mysqli_stmt_bind_param($stmt2, "s", $un);
-      mysqli_stmt_execute($stmt2);
-      mysqli_stmt_store_result($stmt2);
-      $result_check = mysqli_stmt_num_rows($stmt2);
+      mysqli_stmt_bind_param($stmt, "s", $un);
+      mysqli_stmt_execute($stmt);
+      mysqli_stmt_store_result($stmt);
+      $result_check = mysqli_stmt_num_rows($stmt);
       if($result_check>0){
         if($type == "student"){
           if($type != $id){
-            header("Location: ../signup.php?error=7");
+            header("Location: signup.php?error=7");
             exit();
           }else{
-            header("Location: ../signup.php?error=5");
+            header("Location: signup.php?error=5");
             exit();
           }
         }else if($type == "teacher"){
           if($type != $id){
-            header("Location: ../signup.php?error=8");
+            header("Location: signup.php?error=8");
             exit();
           }else{
-            header("Location: ../signup.php?error=6");
+            header("Location: signup.php?error=6");
             exit();
           }
         }
@@ -114,7 +116,7 @@
     }else{
       mysqli_stmt_bind_param($stmt, "sssss", $name, $surn, $email, $pswhash, $un);
       mysqli_stmt_execute($stmt);
-      header("Location: ../signup.php?signup=".$message);
+      header("Location: ../../main.php?signup=".$message);
       exit();
     }
   }

@@ -1,12 +1,21 @@
 <?php
-  if(isset($_GET['login'])){
-    if($_GET['login'] == "teachers"){
-      header("Location: php/tmain.php?id=".$_GET['id']);
-    }else if($_GET['login'] == "students"){
-      header("Location: php/smain.php?id=".$_GET['id']);
+  if(isset($_SESSION['log_flag'])){
+    if($_SESSION['log_flag'] == "students"){
+      header("Location: php/smain.php");
+    }else if ($_SESSION['log_flag'] == "teachers"){
+      header("Location: php/tmain.php");
+    }else{
+      if (ini_get("session.use_cookies")) {
+        $params = session_get_cookie_params();
+        setcookie(session_name(), '', time() - 42000,
+        $params["path"], $params["domain"],
+        $params["secure"], $params["httponly"]);
+      }
+      session_destroy();
     }
   }else{
-      session_start();?>
+      session_start();
+      $_SESSION = array();?>
       <!DOCTYPE html>
       <html lang="en">
       <head>
@@ -19,7 +28,7 @@
           <div class="container">
           <a href="php/login/login.php">Login</a>
           <a href="php/register/signup.php">Register</a>
-        </div>
+          </div>
         <h1>SCHOOL</h1>
         </body>
       </html>
