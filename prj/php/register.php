@@ -104,8 +104,8 @@
       $sqlq = "INSERT INTO `teachers_verify` (`name`, `surname`, `email`, `password`, `username`) VALUES (?, ?, ?, ?, ?);";
       $message = "Please wait 24hours for an administrator to verify you are a teacher";
     }else{
-      $sqlq = "INSERT INTO `$id` (`name`, `surname`, `email`, `password`, `username`) VALUES (?, ?, ?, ?, ?);";
-      $message = "success";
+      $sqlq = "INSERT INTO `students_verify` (`name`, `surname`, `email`, `password`, `username`) VALUES (?, ?, ?, ?, ?);";
+      $message = "Please wait 24hours for an administrator to verify you are a student";
     }
     $pswhash = passWord_hash($pass1, PASSWORD_DEFAULT);
     $stmt = mysqli_stmt_init($conn);
