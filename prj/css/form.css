@@ -3,7 +3,7 @@
     padding: 0;
     box-sizing: border-box;
     background-color: rgb(74, 74, 180);
-    
+
 
 }
 .container{
@@ -30,6 +30,15 @@
     font-size: 1.3vw;
 }
 
+.form select{
+    height: 40px;
+    width: 100%;;
+    background-color: white;
+    margin-bottom: 4px;
+    border-radius:8px;
+    /* text-align: center; */
+    font-size: 1.3vw;
+}
 
 input[type = "submit"] {
     background-color:lightgreen;

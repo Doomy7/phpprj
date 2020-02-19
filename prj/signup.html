@@ -10,13 +10,19 @@
     <div class="container">
         <div class="form">
             <h2>Sign up!</h2>
-            <form>
-            <input type="text">
-            <input type="text">
-            <input type="text">
-            <input type="text">
-            <input type="text" >
-            <input type="submit" value="Sign Up">
+            <form class="" action"php/register.php" method="post">
+              <input type="text" name="name" placeholder="name" value="">
+              <input type="text" name="surname" placeholder="surname">
+              <input type="text" name="username" placeholder="username">
+              <input type="text" name="email" placeholder="email">
+              <input type="text" name="pass1" placeholder="password">
+              <input type="text" name="pass2" placeholder="repeat password">
+              <select id="type" placeholder="What are you?">
+              <option value="none" disabled selected>- What is thy identity? -</option>
+               <option value="volvo">Student</option>
+               <option value="saab">Teacher</option>
+              </select>
+              <input type="submit" name="submit" value="Sign Up">
             </form>
         </div>
     </div>
