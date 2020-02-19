@@ -11,10 +11,15 @@
 
         <div class="form">
             <h2>Log In!</h2>
-            <form >
-            <input type="text"  >
-            <input type="text" >
-            <input type="submit" value="Log In">
+            <form class="" action="php/login.php" method="post">
+            <input type="text" name="id" placeholder="username/email">
+            <input type="password" name="password" placeholder="password">
+            <select id="type" name="type">
+            <option value="none" disabled selected>- What is thy identity? -</option>
+             <option value="students">Student</option>
+             <option value="teachers">Teacher</option>
+            </select>
+            <input type="submit" name="submit" value="Log In">
             <?php
               if(isset($_GET['error'])){
                 $error = $_GET['error'];
@@ -24,6 +29,7 @@
                   if($erNo == $error){?>
                     <input type="text" name="" disabled value="<?php echo "ERROR: ".$type; ?>">
                   <?php
+                    break;
                   }
                 }
                 fclose($file);

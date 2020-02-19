@@ -1,19 +1,10 @@
-0, Form Incomplete
-1, Email Exists
-2, UserName Exists
-3, Password do not match
-4, Bad Email
-5, Bad Data
-6, Teacher/Student Does Not exists
-7, Password mismatch
-8, Not valid reminder
 10, incorrect reminder
 99, Bad boy
-
 00, Form Incomplete
 01, Passwords do not match
 02, Bad Data
 03, Bad email
+04, User or password mismatch
 1, Student email exists
 2, Teacher email exists
 3, Email exists in teachers
