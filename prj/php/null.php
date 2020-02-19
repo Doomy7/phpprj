@@ -1,1 +1,7 @@
-<h1><?php ECHO "BAD BOY"; ?></h1>
+<?php
+    if ( $_SERVER['REQUEST_METHOD']=='GET' && realpath(__FILE__) == realpath( $_SERVER['SCRIPT_FILENAME'] ) ) {
+        header( 'HTTP/1.0 403 Forbidden', TRUE, 403 );
+        /* choose the appropriate page to redirect users */
+        die( header( 'location: ../main.php' ) );
+    }
+ ?>
