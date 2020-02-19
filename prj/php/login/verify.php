@@ -46,7 +46,7 @@
           }
 
         }else{
-          header("Location: ../login.php?error=05");
+          header("Location: login.php?error=04");
           exit();
         }
       }

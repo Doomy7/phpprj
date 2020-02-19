@@ -1,6 +1,6 @@
 <?php
 
-  include_once "../includes/dbinc.php";
+  include "../includes/dbinc.php";
 
   if(isset($_POST['submit'])){
 
@@ -25,17 +25,16 @@
       header("Location: signup.php?error=03");
       exit();
     }else{
-      check_email("students", $id, $conn);
-      check_email("teachers", $id, $conn);
-      check_username("students", $id, $conn);
-      check_username("teachers", $id, $conn);
-      exit();
+      check_email("students",$conn, $email);
+      check_email("teachers", $conn, $email);
+      check_username("students", $conn, $un);
+      check_username("teachers", $conn, $un);
     }
     insert($name, $surn, $email, $pass1, $un, $id, $conn);
   }
 
-  function check_email($type, $id, $conn){
-    $sqlq = "SELECT * FROM `$type` WHERE `email` = ?";
+  function check_email($type, $conn, $email){
+    $sqlq = "SELECT * FROM `$type` WHERE `email` = ?;";
     $stmt = mysqli_stmt_init($conn);
     if(!mysqli_stmt_prepare($stmt, $sqlq)){
       echo 'SQL ERROR';
@@ -44,32 +43,16 @@
       mysqli_stmt_execute($stmt);
       mysqli_stmt_store_result($stmt);
       $result_check = mysqli_stmt_num_rows($stmt);
-      echo($result_check);
       if($result_check>0){
-        if($type == "student"){
-          if($type != $id){
-            header("Location: signup.php?error=3");
-            exit();
-          }else{
-            header("Location: signup.php?error=1");
-            exit();
-          }
-        }else if($type == "teacher"){
-          if($type != $id){
-            header("Location: signup.php?error=4");
-            exit();
-          }else{
-            header("Location: signup.php?error=2");
-            exit();
-          }
-        }
+        header("Location: signup.php?error=05");
+        exit();
       }
     }
   }
 
-  function check_username($type, $id, $conn){
+  function check_username($type, $conn, $un){
     //userName check
-    $sqlq = "SELECT * FROM `$type` WHERE `username` = ?";
+    $sqlq = "SELECT * FROM `$type` WHERE `username` = ?;";
     $stmt = mysqli_stmt_init($conn);
     if(!mysqli_stmt_prepare($stmt, $sqlq)){
       echo 'SQL ERROR';
@@ -79,23 +62,8 @@
       mysqli_stmt_store_result($stmt);
       $result_check = mysqli_stmt_num_rows($stmt);
       if($result_check>0){
-        if($type == "student"){
-          if($type != $id){
-            header("Location: signup.php?error=7");
-            exit();
-          }else{
-            header("Location: signup.php?error=5");
-            exit();
-          }
-        }else if($type == "teacher"){
-          if($type != $id){
-            header("Location: signup.php?error=8");
-            exit();
-          }else{
-            header("Location: signup.php?error=6");
-            exit();
-          }
-        }
+        header("Location: signup.php?error=06");
+        exit();
       }
     }
   }
@@ -104,10 +72,8 @@
     //insert query
     if($id == "teachers"){
       $sqlq = "INSERT INTO `teachers_verify` (`name`, `surname`, `email`, `password`, `username`) VALUES (?, ?, ?, ?, ?);";
-      $message = "Please wait 24hours for an administrator to verify you are a teacher";
-    }else{
+    }else if($id == "students"){
       $sqlq = "INSERT INTO `students_verify` (`name`, `surname`, `email`, `password`, `username`) VALUES (?, ?, ?, ?, ?);";
-      $message = "Please wait 24hours for an administrator to verify you are a student";
     }
     $pswhash = passWord_hash($pass1, PASSWORD_DEFAULT);
     $stmt = mysqli_stmt_init($conn);
@@ -116,7 +82,7 @@
     }else{
       mysqli_stmt_bind_param($stmt, "sssss", $name, $surn, $email, $pswhash, $un);
       mysqli_stmt_execute($stmt);
-      header("Location: ../../main.php?signup=".$message);
+      header("Location: ../../main.php?signup=Please_wait_for_system_verification");
       exit();
     }
   }
