@@ -1,7 +1,7 @@
 <?php
   session_start();
   if($_SESSION["log_flag"] == "students"){
-    header("Location: null.php");
+    header("Location: smain.php");
   }else if ($_SESSION["log_flag"] != "teachers"){
     header("Location: ../login.php");
   }

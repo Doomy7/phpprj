@@ -1,7 +1,6 @@
 <?php
-  include_once 'includes/dbinc.php';
+  include 'includes/dbinc.php';
   session_start();
-  print_r($_SESSION);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -15,7 +14,7 @@
    <main>
        <div class="container">
            <a href="logout.php">Log Out</a>
-           <a href="#">Menuitem4</a>
+           <a href="smain.php">Back</a>
        </div>
 
        <?php
@@ -28,11 +27,24 @@
            mysqli_stmt_bind_param($stmt, "s", $_SESSION['id']);
            mysqli_stmt_execute($stmt);
            $result = mysqli_stmt_get_result($stmt);
-           $row = mysqli_fetch_assoc($result);
-           while($row = mysqli_fetch_assoc($result)){?>
-             <p class="error"><?php echo $row['name']." : ".$row['mark']?></p></br>
+           $sum = 0;
+           $passed = 0;
+           while($row = mysqli_fetch_assoc($result)){
+             if($row['mark'] >= 50){
+                $sum += $row['mark'];
+                $passed += 1;?>
+                <p class="pass"><?php echo $row['name']." : ".$row['mark']?></p></br>
           <?php
+            }else{ ?>
+                <p class="error"><?php echo $row['name']." : ".$row['mark']?></p></br>
+          <?php
+            }
            }
+           ?>
+
+           <p class="pass"><?php echo("Mean : ".ceil($sum/$passed)."/100"); ?>
+           <!-- <p class="error"><?php echo("Mean : ".ceil($sum/$result->num_rows)."/100"); ?></p> -->
+          <?php
          }
         ?>
    </main>
