@@ -1,6 +1,5 @@
 <?php
   include_once 'includes/dbinc.php';
-
   session_start();
   $ID = mysqli_real_escape_string($conn, $_POST['id']);
   $psw = mysqli_real_escape_string($conn, $_POST['password']);
@@ -27,9 +26,9 @@
         exit();
       }else{
         if(password_verify($psw, $row['password'])){
-          $_SESSION['log_flag'] = 1;
+          $_SESSION['log_flag'] = $type;
           $_SESSION['name'] = $row['username'];
-          header("Location: ../login.php?login=".$type);
+          header("Location: ../main.php?login=".$type);
           exit();
         }else{
           header("Location: ../login.php?error=05");
