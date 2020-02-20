@@ -21,15 +21,21 @@
       <head>
          <meta charset="UTF-8">
          <meta name="viewport" content="width=device-width, initial-scale=1.0">
-         <link rel="stylesheet" href="css/main.css">
+         <link rel="stylesheet" href="css/form.css">
          <title>Document</title>
       </head>
         <body>
           <div class="container">
-          <a href="php/login/login.php">Login</a>
-          <a href="php/register/signup.php">Register</a>
+            <div class="form">
+              <h2>SCHOOL !</h2>
+              <form action="php/login/login.php">
+                <input type="submit" value="Login" />
+              </form>
+              <form action="php/register/signup.php">
+                <input type="submit" value="Signup" />
+              </form>
+            </div>
           </div>
-        <h1>SCHOOL</h1>
         </body>
       </html>
 <?php
