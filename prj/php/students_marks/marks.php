@@ -1,10 +1,14 @@
 <?php
   include '../includes/dbinc.php';
   session_start();
-  if(!isset($_SESSION['student']) || $_SESSION['student'] != key($_POST)){
-    $_SESSION['student'] = key($_POST);
-    $_SESSION['student_name'] = $_POST[key($_POST)];
+  if($_SESSION['s_flag'] == 1){
+    if(!isset($_SESSION['student']) || $_SESSION['student'] != key($_POST)){
+      $_SESSION['student'] = key($_POST);
+      $_SESSION['student_name'] = $_POST[key($_POST)];
+      $_SESSION['s_flag'] = 0;
+    }
   }
+
   if(!isset($_SESSION['l_flag']) || $_SESSION['l_flag'] == 0){
     $_SESSION['l_flag'] = 1;
   }
@@ -91,7 +95,11 @@
                    <input type="submit" name=<?php echo($row['lid']);?> value="<?php echo $row['name']." : ".$row['mark']?>">
                  </form>
            <?php
-              }
+         }else{?>
+                <form class="form" action="modify_marks.php" method="post">
+                  <input style="color: red; background-color: rgb(211, 120, 120,.5);" type="submit" name=<?php echo($row['lid']);?> value="<?php echo $row['name']." : ".$row['mark']?>">
+                </form>
+              <?php }
             }
             if ($passed == 0){?>
               <br />

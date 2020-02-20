@@ -6,6 +6,9 @@
   }else if ($_SESSION["log_flag"] != "teachers"){
     header("Location: ../../main.php");
   }
+  if(!isset($_SESSION['s_flag']) || $_SESSION['s_flag'] == 0){
+    $_SESSION['s_flag'] = 1;
+  }
  ?>
  <!DOCTYPE html>
  <html lang="en">

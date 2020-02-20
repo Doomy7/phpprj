@@ -6,5 +6,6 @@
 04, User or password mismatch
 05, Email Exists
 06, Username Exists
-07, Incorrect mark value
+07, Incorrect mark range [0 - 100]
 08, Mark field empty
+09, Not a number
