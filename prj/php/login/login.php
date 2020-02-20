@@ -1,10 +1,13 @@
 <?php
+  #IF ACCESSED CHECKS LOG FLAG
   if(isset($_SESSION['log_flag'])){
+    #IF FLAG LEGIT REDIRECTS TO ITS MAIN PAGE
     if($_SESSION['log_flag'] == "students"){
       header("Location: php/smain.php");
     }else if ($_SESSION['log_flag'] == "teachers"){
       header("Location: php/tmain.php");
     }else{
+      #ELSE DESTROY
       if (ini_get("session.use_cookies")) {
         $params = session_get_cookie_params();
         setcookie(session_name(), '', time() - 42000,
@@ -35,11 +38,13 @@
             <input type="text" name="id" placeholder="username/email">
             <input type="password" name="password" placeholder="password">
             <select id="type" name="type">
+            <!-- USED FOR TABLE QUERY ex. if TEACHER check TEACHERS table -->
             <option value="none" disabled selected>- What is thy identity? -</option>
              <option value="students">Student</option>
              <option value="teachers">Teacher</option>
             </select>
             <input type="submit" name="submit" value="Log In">
+            <!-- IN ERROR CASE PRINT ERROR -->
             <?php
               if(isset($_GET['error'])){
                 $error = $_GET['error'];

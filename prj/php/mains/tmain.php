@@ -1,7 +1,9 @@
 <?php
   session_start();
+  #IF ACCESSED FROM STUDENT SESSION RETURN THEM BACK
   if($_SESSION["log_flag"] == "students"){
     header("Location: smain.php");
+  #ELSE IF VIOLENT ACCESS RETURN TO MAIN
   }else if ($_SESSION["log_flag"] != "teachers"){
     header("Location: ../../main.php");
   }

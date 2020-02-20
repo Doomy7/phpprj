@@ -1,17 +1,20 @@
 <?php
   include '../includes/dbinc.php';
   session_start();
-  if($_SESSION['s_flag'] == 1){
-    if(!isset($_SESSION['student']) || $_SESSION['student'] != key($_POST)){
-      $_SESSION['student'] = key($_POST);
-      $_SESSION['student_name'] = $_POST[key($_POST)];
-      $_SESSION['s_flag'] = 0;
+  if ($_SESSION['log_flag'] == "teachers"){
+    if($_SESSION['s_flag'] == 1){
+      if(!isset($_SESSION['student']) || $_SESSION['student'] != key($_POST)){
+        $_SESSION['student'] = key($_POST);
+        $_SESSION['student_name'] = $_POST[key($_POST)];
+        $_SESSION['s_flag'] = 0;
+      }
+    }
+
+    if(!isset($_SESSION['l_flag']) || $_SESSION['l_flag'] == 0){
+      $_SESSION['l_flag'] = 1;
     }
   }
 
-  if(!isset($_SESSION['l_flag']) || $_SESSION['l_flag'] == 0){
-    $_SESSION['l_flag'] = 1;
-  }
 ?>
 <!DOCTYPE html>
 <html lang="en">
