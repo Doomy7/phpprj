@@ -1,6 +1,6 @@
 <?php
   session_start();
-
+  #SAME FLAG CHECK
   include '../includes/dbinc.php';
   if($_SESSION["log_flag"] == "students"){
     header("Location: ../../main.php");
@@ -29,6 +29,7 @@
            <a href="students_list.php">Back</a>
            <a href="../logout.php">Log Out</a>
        </div>
+       <!-- SIMPLY PUT CORRECT VALUE AND POST -->
        <p class="pass"><?php echo($_SESSION['student_name']);?></p></br>
        <div class="form">
          <form action="change.php" method="post">

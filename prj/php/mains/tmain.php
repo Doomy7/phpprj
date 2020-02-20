@@ -23,6 +23,7 @@
            <a href="../students_marks/students_list.php">Students</a>
            <a href="../logout.php">Log Out</a>
        </div>
+       <!-- WELCOME MESSAGE -->
        <p class="pass">Welcome <?php echo(" ".$_SESSION['name']); ?></p>
    </main>
 </body>

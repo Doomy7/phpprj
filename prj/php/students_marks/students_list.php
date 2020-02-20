@@ -1,11 +1,14 @@
 <?php
   session_start();
   include_once "../includes/dbinc.php";
+  #IF STUDENT TRY TO ACCESS RETURN THEM BACK
   if($_SESSION["log_flag"] == "students"){
     header("Location: ../mains/smain.php");
+  #IF SOMEONE ELSE RETURN THEM TO MAIN
   }else if ($_SESSION["log_flag"] != "teachers"){
     header("Location: ../../main.php");
   }
+  #FLAG FOR SID CHANGE
   if(!isset($_SESSION['s_flag']) || $_SESSION['s_flag'] == 0){
     $_SESSION['s_flag'] = 1;
   }
@@ -25,6 +28,7 @@
            <a href="../logout.php">LogOut</a>
         </div>
         <?php
+        #SIMPLE QUERY FETCH ALL STUDENTS
         $stmt = mysqli_stmt_init($conn);
         $sqlq = "SELECT * FROM `students`;";
 
@@ -36,6 +40,7 @@
           while($row = mysqli_fetch_assoc($result)){
 
             ?><br />
+            <!-- IF CLICKED POST selected Student id -->
             <form class="form" action="marks.php" method="post">
               <input type="submit" name=<?php echo($row['sid']);?> value="<?php echo($row['name'].' '.$row['surname']);?>">
             </form>

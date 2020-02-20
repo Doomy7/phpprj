@@ -18,6 +18,7 @@
               <input type="password" name="pass1" placeholder="password">
               <input type="password" name="pass2" placeholder="repeat password">
               <select id="type" name="type">
+                <!-- SELECT IF STUDENT OR TEACHER -->
               <option value="none" disabled selected>- What is thy identity? -</option>
                <option value="students">Student</option>
                <option value="teachers">Teacher</option>

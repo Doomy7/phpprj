@@ -1,4 +1,5 @@
 <?php
+  #SIMPLE LOCAL DB LOGIN
   $dbServerName = 'localhost';
   $dbUserName = 'root';
   $dbPassword = '';

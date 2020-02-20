@@ -1,5 +1,6 @@
 <?php
   session_start();
+  #FLAG CHECK 
   if($_SESSION["log_flag"] == "teachers"){
     header("Location: tmain.php");
   }else if ($_SESSION["log_flag"] != "students"){
