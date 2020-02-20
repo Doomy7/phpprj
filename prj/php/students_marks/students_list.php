@@ -1,10 +1,10 @@
 <?php
   session_start();
-  include_once "includes/dbinc.php";
+  include_once "../includes/dbinc.php";
   if($_SESSION["log_flag"] == "students"){
-    header("Location: smain.php");
+    header("Location: ../mains/smain.php");
   }else if ($_SESSION["log_flag"] != "teachers"){
-    header("Location: ../main.php");
+    header("Location: ../../main.php");
   }
  ?>
  <!DOCTYPE html>
@@ -12,14 +12,14 @@
  <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/main.css">
-    <title>Document</title>
+    <link rel="stylesheet" href="../../css/main.css">
+    <title>The Students</title>
  </head>
  <body>
     <main>
         <div class="container">
-           <a href="tmain.php">Back</a>
-           <a href="logout.php">LogOut</a>
+           <a href="../mains/tmain.php">Back</a>
+           <a href="../logout.php">LogOut</a>
         </div>
         <?php
         $stmt = mysqli_stmt_init($conn);

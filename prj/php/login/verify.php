@@ -36,12 +36,12 @@
           if($type=="students"){
             $_SESSION['login'] = $type;
             $_SESSION['id'] = $row['sid'];
-            header("Location: ../smain.php?login=success");
+            header("Location: ../mains/smain.php?login=success");
             exit();
           }else if ($type="teachers"){
             $_SESSION['login'] = $type;
             $_SESSION['id'] = $row['tid'];
-            header("Location: ../tmain.php?login=success");
+            header("Location: ../mains/tmain.php?login=success");
             exit();
           }
 
