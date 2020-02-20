@@ -2,6 +2,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    background-color:rgb(74, 74, 220);
 }
 
 
@@ -39,6 +40,17 @@
 }
 
 
+
+.form input{
+  color: white;
+  background-color: rgb(128,128,128);
+  font-size: 3vh;
+  width:30%;
+ margin-left: 35%;
+ margin-top: 10px;
+ border-radius: 10px;
+}
+
 .error {
     color: red;
     background-color: rgb(211, 120, 120,.5);
@@ -50,8 +62,8 @@
 }
 
 .pass {
-    color: green;
-    background-color: rgb(211, 120, 120,.5);
+    color: white;
+    background-color: rgb(128,128,128);
     font-size: 4vh;
     max-width: 30%;
     margin-left: 35%;

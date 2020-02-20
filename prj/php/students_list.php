@@ -6,22 +6,40 @@
   }else if ($_SESSION["log_flag"] != "teachers"){
     header("Location: ../main.php");
   }
-
-  print_students($conn);
-
-  function print_students($conn){
-    $stmt = mysqli_stmt_init($conn);
-    $sqlq = "SELECT * FROM `students`;";
-
-    if(!mysqli_stmt_prepare($stmt, $sqlq)){
-      echo 'SQL ERROR';
-    }else{
-      mysqli_stmt_execute($stmt);
-      $result = mysqli_stmt_get_result($stmt);
-      $row = mysqli_fetch_assoc($result);
-      while($row = mysqli_fetch_assoc($result)){
-        print_r($row);
-      }
-    }
-  }
  ?>
+ <!DOCTYPE html>
+ <html lang="en">
+ <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/main.css">
+    <title>Document</title>
+ </head>
+ <body>
+    <main>
+        <div class="container">
+           <a href="tmain.php">Back</a>
+           <a href="logout.php">LogOut</a>
+        </div>
+        <?php
+        $stmt = mysqli_stmt_init($conn);
+        $sqlq = "SELECT * FROM `students`;";
+
+        if(!mysqli_stmt_prepare($stmt, $sqlq)){
+          echo 'SQL ERROR';
+        }else{
+          mysqli_stmt_execute($stmt);
+          $result = mysqli_stmt_get_result($stmt);
+          while($row = mysqli_fetch_assoc($result)){
+
+            ?><br />
+            <form class="form" action="marks.php" method="post">
+              <input type="submit" name=<?php echo($row['sid']);?> value="<?php echo($row['name'].' '.$row['surname']);?>">
+            </form>
+            <?php
+          }
+        }
+        ?>
+    </main>
+ </body>
+ </html>
