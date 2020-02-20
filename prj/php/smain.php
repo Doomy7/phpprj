@@ -21,7 +21,7 @@
           <a href="marks.php">My Marks</a>
           <a href="logout.php">LogOut</a>
        </div>
-       <p class="error">ERROR</p>
+       <p class="pass">Welcome <?php echo(" ".$_SESSION['name']); ?></p>
    </main>
 </body>
 </html>

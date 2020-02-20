@@ -3,11 +3,10 @@
   if($_SESSION["log_flag"] == "students"){
     header("Location: smain.php");
   }else if ($_SESSION["log_flag"] != "teachers"){
-    header("Location: ../login.php");
+    header("Location: ../main.php");
   }
 
  ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,13 +18,10 @@
 <body>
    <main>
        <div class="container">
-           <a href="#">Menuitem1</a>
-           <a href="#">Menuitem2</a>
+           <a href="students_list.php">Students</a>
            <a href="logout.php">Log Out</a>
-           <a href="#">Menuitem4</a>
        </div>
-
-       <p class="error">ERROR</p>
+       <p class="pass">Welcome <?php echo(" ".$_SESSION['name']); ?></p>
    </main>
 </body>
 </html>
