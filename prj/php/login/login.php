@@ -37,12 +37,16 @@
             <form class="" action="verify.php" method="post">
             <input type="text" name="id" placeholder="username/email">
             <input type="password" name="password" placeholder="password">
-            <select id="type" name="type">
             <!-- USED FOR TABLE QUERY ex. if TEACHER check TEACHERS table -->
+            <select id="type" name="type">
             <option value="none" disabled selected>- What is thy identity? -</option>
-             <option value="students">Student</option>
-             <option value="teachers">Teacher</option>
+             <option value="students"<?php if(isset($_GET['admin'])){?> disabled <?php } ?>>Student</option>
+             <option value="teachers"<?php if(isset($_GET['admin'])){?> disabled <?php } ?>>Teacher</option>
+             <option value="admins" <?php if(!isset($_GET['admin'])){?> disabled <?php } ?>>admin</option>
             </select>
+            <?php if(isset($_GET['admin'])){?>
+              <input type="text" name="secret" placeholder="secret">
+            <?php } ?>
             <input type="submit" name="submit" value="Log In">
             <!-- IN ERROR CASE PRINT ERROR -->
             <?php

@@ -9,3 +9,4 @@
 07, Incorrect mark range [0 - 100]
 08, Mark field empty
 09, Not a number
+10, Admin Error
