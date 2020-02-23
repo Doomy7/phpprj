@@ -7,15 +7,18 @@
   }
 
   if(isset($_POST[key($_POST)])){
-
+    #SPLIT NAME OF SUBMIT BUTTON TO GET THE TABLE AND INDEX TO MANIPULATE
     $index = explode("_", key($_POST));
     if($_POST[key($_POST)] == "ACCEPT"){
+      #IF ACCEPTED COPY THE ENTRY FROM THE VERIFICATION TABLE TO MAIN TABLE
       copy_query($index, $conn);
+      #DELETE THE ENTRY FROM VERIFICATION
       delete($index, $conn, $_POST[key($_POST)]);
       header("Location: verify_pending.php");
       exit();
 
     }else if($_POST[key($_POST)] == "REJECT"){
+      #ON REJECTION DELETE THE ENTRY FROM VERIFICATION
       delete($index, $conn, $_POST[key($_POST)]);
       header("Location: verify_pending.php");
       exit();

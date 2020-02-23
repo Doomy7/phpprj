@@ -23,6 +23,7 @@
         </div>
         <div id="container">
           <?php
+          #SIMPLE LOG PRINTING
           echo('<table id="log">');
           echo('<tr>');
           echo('<th>Log. No</th>');

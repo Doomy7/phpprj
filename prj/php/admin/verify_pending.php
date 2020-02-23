@@ -6,6 +6,7 @@
   if($_SESSION["log_flag"] != "admins"){
     header("Location: ../logout.php");
   }
+  #initialize entries
   $_SESSION['students'] = array();
   $_SESSION['teachers'] = array();
 
@@ -26,6 +27,8 @@
          </div>
          <div id="container">
            <?php
+           #construct the tables for entries
+           #TEACHER TABLE
            echo('<table id="log">');
            echo('<tr>');
            echo('<td colspan=7 style="text-align:center;">TEACHERS</td>');
@@ -47,6 +50,7 @@
              mysqli_stmt_execute($stmt);
              $result = mysqli_stmt_get_result($stmt);
              while($row = mysqli_fetch_assoc($result)){
+               #echo the following
                echo('<tr>');
                echo('<td>'.$row['vid'].'</td>');
                echo('<td>'.$row['name'].'</td>');
@@ -55,6 +59,7 @@
                echo('<td>'.$row['time'].'</td>');
                $_SESSION['teachers'][$row['vid']] = $row;
                echo('<form action="action.php" method="post">');
+               #event based on accepting/rejecting
                echo('<td><input type="submit" name=teachers_'.$row['vid'].' value="ACCEPT"></input></td>');
                echo('<td><input type="submit" name=teachers_'.$row['vid'].' value="REJECT"></input></td>');
                echo('</form>');
