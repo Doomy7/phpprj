@@ -18,10 +18,10 @@
               <input type="password" name="pass1" placeholder="password">
               <input type="password" name="pass2" placeholder="repeat password">
               <select id="type" name="type">
-                <!-- SELECT IF STUDENT OR TEACHER -->
               <option value="none" disabled selected>- What is thy identity? -</option>
-               <option value="students">Student</option>
-               <option value="teachers">Teacher</option>
+               <option value="students"<?php if(isset($_GET['admin'])){?> disabled <?php } ?>>Student</option>
+               <option value="teachers"<?php if(isset($_GET['admin'])){?> disabled <?php } ?>>Teacher</option>
+               <option value="admins" <?php if(!isset($_GET['admin'])){?> disabled <?php } ?>>admin</option>
               </select>
               <input type="submit" name="submit" value="Sign Up">
               <?php
