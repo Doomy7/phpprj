@@ -120,16 +120,17 @@
   function insert($name, $surn, $email, $pass1, $un, $id, $conn){
     //insert query
     if($id == "teachers"){
-      $sqlq = "INSERT INTO `teachers_verify` (`name`, `surname`, `email`, `password`, `username`) VALUES (?, ?, ?, ?, ?);";
+      $sqlq = "INSERT INTO `teachers_verify` (`name`, `surname`, `email`, `password`, `username`, `time`) VALUES (?, ?, ?, ?, ?, ?);";
     }else if($id == "students"){
-      $sqlq = "INSERT INTO `students_verify` (`name`, `surname`, `email`, `password`, `username`) VALUES (?, ?, ?, ?, ?);";
+      $sqlq = "INSERT INTO `students_verify` (`name`, `surname`, `email`, `password`, `username`, `time`) VALUES (?, ?, ?, ?, ?, ?);";
     }
     $pswhash = passWord_hash($pass1, PASSWORD_DEFAULT);
     $stmt = mysqli_stmt_init($conn);
     if(!mysqli_stmt_prepare($stmt, $sqlq)){
       echo 'SQL ERROR';
     }else{
-      mysqli_stmt_bind_param($stmt, "sssss", $name, $surn, $email, $pswhash, $un);
+      $reg_time = date("Y/m/d") . ' ' . date("h:i:sa");
+      mysqli_stmt_bind_param($stmt, "ssssss", $name, $surn, $email, $pswhash, $un, $reg_time);
       mysqli_stmt_execute($stmt);
       #VERIFICATION NOTICE
       header("Location: ../../main.php?signup=Please_wait_for_system_verification");
