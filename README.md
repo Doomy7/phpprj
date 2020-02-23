@@ -11,5 +11,5 @@ To enable admin registration, on signup page write "admin" on the "Name" input a
 Then complete the form normally and on the drop down menu click the "admin" selection.
 
 #Admin Login
-To enable admin login, write "admin" on the first field and select login. Then complete form normally.
+To enable admin login, write "admin" on the first field and click login. Then complete the form normally.
 Select the "admin" option and write your exclusive secret phrase.
