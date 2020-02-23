@@ -34,7 +34,7 @@
       if(!mysqli_stmt_prepare($stmt, $sqlq)){
         echo 'SQL ERROR';
       }else{
-        $message = "Teacher ".$row['username']." made following changes ".$new_mark." ".$sid." ".$lid;
+        $message = "Teacher ".$_SESSION['name']." made following changes. Student: ".$_SESSION['student_name']." New mark: ".$new_mark." On Lesson: ".$_SESSION['target_lesson'];
         $log_time = date("Y/m/d") . ' ' . date("h:i:sa");
         mysqli_stmt_bind_param($stmt, "ss", $message, $log_time);
         mysqli_stmt_execute($stmt);
