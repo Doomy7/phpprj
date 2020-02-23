@@ -70,3 +70,17 @@
     text-align: center;
     border-radius: 10px;
 }
+
+#log{
+  color: white;
+  background-color : white;
+  margin-bottom: 4px;
+  border-radius:8px;
+}
+#container{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}

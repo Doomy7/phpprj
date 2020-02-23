@@ -37,8 +37,19 @@
               #BASED ON TYPE REDIRECTED TO RESPECTED MAIN PAGES
               $_SESSION['login'] = $type;
               $_SESSION['id'] = $row['aid'];
-              header("Location: ../admin/amain.php?login=success");
-              exit();
+
+              $stmt = mysqli_stmt_init($conn);
+              $sqlq = "INSERT INTO `activity_log` (`log`, `time`) VALUES (?, ?);";
+              if(!mysqli_stmt_prepare($stmt, $sqlq)){
+                echo 'SQL ERROR';
+              }else{
+                $message = "Admin ".$row['username']." logged in!";
+                $log_time = date("Y/m/d") . ' ' . date("h:i:sa");
+                mysqli_stmt_bind_param($stmt, "ss", $message, $log_time);
+                mysqli_stmt_execute($stmt);
+                header("Location: ../admin/amain.php?login=success");
+                exit();
+              }
             }else{
               header("Location: login.php?error=10");
             }
@@ -91,13 +102,33 @@
             #SESSION login, id
             $_SESSION['login'] = $type;
             $_SESSION['id'] = $row['sid'];
-            header("Location: ../mains/smain.php?login=success");
-            exit();
+            $stmt = mysqli_stmt_init($conn);
+            $sqlq = "INSERT INTO `activity_log` (`log`, `time`) VALUES (?, ?);";
+            if(!mysqli_stmt_prepare($stmt, $sqlq)){
+              echo 'SQL ERROR';
+            }else{
+              $message = "Student ".$row['username']." logged in!";
+              $log_time = date("Y/m/d") . ' ' . date("h:i:sa");
+              mysqli_stmt_bind_param($stmt, "ss", $message, $log_time);
+              mysqli_stmt_execute($stmt);
+              header("Location: ../mains/smain.php?login=success");
+              exit();
+            }
           }else if ($type="teachers"){
             $_SESSION['login'] = $type;
             $_SESSION['id'] = $row['tid'];
-            header("Location: ../mains/tmain.php?login=success");
-            exit();
+            $stmt = mysqli_stmt_init($conn);
+            $sqlq = "INSERT INTO `activity_log` (`log`, `time`) VALUES (?, ?);";
+            if(!mysqli_stmt_prepare($stmt, $sqlq)){
+              echo 'SQL ERROR';
+            }else{
+              $message = "Teacher ".$row['username']." logged in!";
+              $log_time = date("Y/m/d") . ' ' . date("h:i:sa");
+              mysqli_stmt_bind_param($stmt, "ss", $message, $log_time);
+              mysqli_stmt_execute($stmt);
+              header("Location: ../mains/tmain.php?login=success");
+              exit();
+            }
           }
         #ERROR FOR MISMATCH PASSWORD
         }else{

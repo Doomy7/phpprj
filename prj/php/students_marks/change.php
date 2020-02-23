@@ -29,7 +29,19 @@
     }else{
       mysqli_stmt_bind_param($stmt, "iii", $new_mark, $sid, $lid);
       mysqli_stmt_execute($stmt);
-      header("Location: marks.php?change=success");
+      $stmt = mysqli_stmt_init($conn);
+      $sqlq = "INSERT INTO `activity_log` (`log`, `time`) VALUES (?, ?);";
+      if(!mysqli_stmt_prepare($stmt, $sqlq)){
+        echo 'SQL ERROR';
+      }else{
+        $message = "Teacher ".$row['username']." made following changes ".$new_mark." ".$sid." ".$lid;
+        $log_time = date("Y/m/d") . ' ' . date("h:i:sa");
+        mysqli_stmt_bind_param($stmt, "ss", $message, $log_time);
+        mysqli_stmt_execute($stmt);
+        header("Location: marks.php?change=success");
+        exit();
+      }
+
     }
   }
 
